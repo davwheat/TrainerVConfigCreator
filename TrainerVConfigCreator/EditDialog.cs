@@ -14,14 +14,14 @@ namespace TrainerVConfigCreator
             InitializeComponent();
 
             vehicleDisplayNameTextBox.Text = vehicleDispName;
-            spawncodeTextBox.Text = vehicleSpawncode;
+            spawnCodeTextBox.Text = vehicleSpawncode;
             enabledCheckbox.Checked = isEnabled;
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
             NewVehicleDisplayName = vehicleDisplayNameTextBox.Text;
-            NewVehicleSpawnCode = spawncodeTextBox.Text;
+            NewVehicleSpawnCode = spawnCodeTextBox.Text;
             NewIsSlotEnabled = enabledCheckbox.Checked;
             DialogResult = DialogResult.OK;
             Close();

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.minimiseButton = new System.Windows.Forms.Button();
             this.maximiseButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -96,7 +97,6 @@
             this.weaponModelName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.weaponDisplayName = new System.Windows.Forms.TextBox();
-            this.minimiseButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -141,6 +141,23 @@
             this.panel1.Size = new System.Drawing.Size(714, 31);
             this.panel1.TabIndex = 0;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.moveForm);
+            // 
+            // minimiseButton
+            // 
+            this.minimiseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.minimiseButton.FlatAppearance.BorderSize = 0;
+            this.minimiseButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.minimiseButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.minimiseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minimiseButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.minimiseButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.minimiseButton.Location = new System.Drawing.Point(552, -4);
+            this.minimiseButton.Name = "minimiseButton";
+            this.minimiseButton.Size = new System.Drawing.Size(50, 27);
+            this.minimiseButton.TabIndex = 3;
+            this.minimiseButton.Text = "🗕";
+            this.minimiseButton.UseVisualStyleBackColor = true;
+            this.minimiseButton.Click += new System.EventHandler(this.minimiseButton_Click);
             // 
             // maximiseButton
             // 
@@ -200,7 +217,7 @@
             this.vehicleBox.ItemHeight = 15;
             this.vehicleBox.Location = new System.Drawing.Point(0, 0);
             this.vehicleBox.Name = "vehicleBox";
-            this.vehicleBox.Size = new System.Drawing.Size(495, 424);
+            this.vehicleBox.Size = new System.Drawing.Size(495, 427);
             this.vehicleBox.TabIndex = 3;
             // 
             // splitContainer1
@@ -223,7 +240,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.splitContainer1.Panel2MinSize = 200;
-            this.splitContainer1.Size = new System.Drawing.Size(700, 424);
+            this.splitContainer1.Size = new System.Drawing.Size(700, 427);
             this.splitContainer1.SplitterDistance = 495;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -232,6 +249,7 @@
             this.groupBox3.Controls.Add(this.loadProjectBtn);
             this.groupBox3.Controls.Add(this.saveProjectBtn);
             this.groupBox3.Controls.Add(this.exportprojectbtn);
+            this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(10, 239);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(178, 109);
@@ -285,7 +303,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.pictureBox1.Location = new System.Drawing.Point(177, 400);
+            this.pictureBox1.Location = new System.Drawing.Point(177, 403);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(24, 24);
             this.pictureBox1.TabIndex = 5;
@@ -300,6 +318,7 @@
             this.groupBox2.Controls.Add(this.deleteButton);
             this.groupBox2.Controls.Add(this.moveItemUpBtn);
             this.groupBox2.Controls.Add(this.moveItemDownBtn);
+            this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(10, 143);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(178, 90);
@@ -368,6 +387,7 @@
             this.groupBox1.Controls.Add(this.spawnCodeTextbox);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.vehNameTextbox);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(10, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(178, 131);
@@ -422,6 +442,7 @@
             this.spawnCodeTextbox.Name = "spawnCodeTextbox";
             this.spawnCodeTextbox.Size = new System.Drawing.Size(92, 20);
             this.spawnCodeTextbox.TabIndex = 2;
+            this.spawnCodeTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.spawnCodeTextbox_KeyDown);
             // 
             // label2
             // 
@@ -463,11 +484,11 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.tabControl1.Controls.Add(this.vehicleTab);
             this.tabControl1.Controls.Add(this.pedTab);
             this.tabControl1.Controls.Add(this.weaponsTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.HotTrack = true;
             this.tabControl1.Location = new System.Drawing.Point(0, 31);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -478,23 +499,23 @@
             // 
             this.vehicleTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
             this.vehicleTab.Controls.Add(this.splitContainer1);
-            this.vehicleTab.Location = new System.Drawing.Point(4, 25);
+            this.vehicleTab.Location = new System.Drawing.Point(4, 22);
             this.vehicleTab.Name = "vehicleTab";
             this.vehicleTab.Padding = new System.Windows.Forms.Padding(3);
-            this.vehicleTab.Size = new System.Drawing.Size(706, 430);
+            this.vehicleTab.Size = new System.Drawing.Size(706, 433);
             this.vehicleTab.TabIndex = 0;
             this.vehicleTab.Text = "Vehicles";
             // 
             // pedTab
             // 
+            this.pedTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
             this.pedTab.Controls.Add(this.splitContainer2);
-            this.pedTab.Location = new System.Drawing.Point(4, 25);
+            this.pedTab.Location = new System.Drawing.Point(4, 22);
             this.pedTab.Name = "pedTab";
             this.pedTab.Padding = new System.Windows.Forms.Padding(3);
-            this.pedTab.Size = new System.Drawing.Size(706, 430);
+            this.pedTab.Size = new System.Drawing.Size(706, 433);
             this.pedTab.TabIndex = 1;
             this.pedTab.Text = "Peds";
-            this.pedTab.UseVisualStyleBackColor = true;
             // 
             // splitContainer2
             // 
@@ -516,7 +537,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.groupBox6);
             this.splitContainer2.Panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.splitContainer2.Panel2MinSize = 200;
-            this.splitContainer2.Size = new System.Drawing.Size(700, 424);
+            this.splitContainer2.Size = new System.Drawing.Size(700, 427);
             this.splitContainer2.SplitterDistance = 495;
             this.splitContainer2.TabIndex = 5;
             // 
@@ -530,7 +551,7 @@
             this.pedBox.ItemHeight = 15;
             this.pedBox.Location = new System.Drawing.Point(0, 0);
             this.pedBox.Name = "pedBox";
-            this.pedBox.Size = new System.Drawing.Size(495, 424);
+            this.pedBox.Size = new System.Drawing.Size(495, 427);
             this.pedBox.TabIndex = 3;
             // 
             // groupBox4
@@ -540,6 +561,7 @@
             this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.button2);
             this.groupBox4.Controls.Add(this.button3);
+            this.groupBox4.ForeColor = System.Drawing.Color.White;
             this.groupBox4.Location = new System.Drawing.Point(10, 239);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(178, 109);
@@ -593,7 +615,7 @@
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.pictureBox2.Location = new System.Drawing.Point(177, 400);
+            this.pictureBox2.Location = new System.Drawing.Point(177, 403);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(24, 24);
             this.pictureBox2.TabIndex = 5;
@@ -608,6 +630,7 @@
             this.groupBox5.Controls.Add(this.deletePed);
             this.groupBox5.Controls.Add(this.movePedUp);
             this.groupBox5.Controls.Add(this.movePedDown);
+            this.groupBox5.ForeColor = System.Drawing.Color.White;
             this.groupBox5.Location = new System.Drawing.Point(10, 143);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(178, 90);
@@ -676,6 +699,7 @@
             this.groupBox6.Controls.Add(this.pedSpawnCode);
             this.groupBox6.Controls.Add(this.label5);
             this.groupBox6.Controls.Add(this.pedDisplayName);
+            this.groupBox6.ForeColor = System.Drawing.Color.White;
             this.groupBox6.Location = new System.Drawing.Point(10, 6);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(178, 131);
@@ -730,6 +754,7 @@
             this.pedSpawnCode.Name = "pedSpawnCode";
             this.pedSpawnCode.Size = new System.Drawing.Size(92, 20);
             this.pedSpawnCode.TabIndex = 2;
+            this.pedSpawnCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pedSpawnCode_KeyDown);
             // 
             // label5
             // 
@@ -754,14 +779,14 @@
             // 
             // weaponsTab
             // 
+            this.weaponsTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
             this.weaponsTab.Controls.Add(this.splitContainer3);
-            this.weaponsTab.Location = new System.Drawing.Point(4, 25);
+            this.weaponsTab.Location = new System.Drawing.Point(4, 22);
             this.weaponsTab.Name = "weaponsTab";
             this.weaponsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.weaponsTab.Size = new System.Drawing.Size(706, 430);
+            this.weaponsTab.Size = new System.Drawing.Size(706, 433);
             this.weaponsTab.TabIndex = 2;
             this.weaponsTab.Text = "Weapons";
-            this.weaponsTab.UseVisualStyleBackColor = true;
             // 
             // splitContainer3
             // 
@@ -783,7 +808,7 @@
             this.splitContainer3.Panel2.Controls.Add(this.groupBox9);
             this.splitContainer3.Panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.splitContainer3.Panel2MinSize = 200;
-            this.splitContainer3.Size = new System.Drawing.Size(700, 424);
+            this.splitContainer3.Size = new System.Drawing.Size(700, 427);
             this.splitContainer3.SplitterDistance = 495;
             this.splitContainer3.TabIndex = 5;
             // 
@@ -797,7 +822,7 @@
             this.weaponBox.ItemHeight = 15;
             this.weaponBox.Location = new System.Drawing.Point(0, 0);
             this.weaponBox.Name = "weaponBox";
-            this.weaponBox.Size = new System.Drawing.Size(495, 424);
+            this.weaponBox.Size = new System.Drawing.Size(495, 427);
             this.weaponBox.TabIndex = 3;
             // 
             // groupBox7
@@ -805,6 +830,7 @@
             this.groupBox7.Controls.Add(this.button4);
             this.groupBox7.Controls.Add(this.button5);
             this.groupBox7.Controls.Add(this.button6);
+            this.groupBox7.ForeColor = System.Drawing.Color.White;
             this.groupBox7.Location = new System.Drawing.Point(10, 239);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(178, 109);
@@ -858,7 +884,7 @@
             // 
             this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.pictureBox3.Location = new System.Drawing.Point(177, 400);
+            this.pictureBox3.Location = new System.Drawing.Point(177, 403);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(24, 24);
             this.pictureBox3.TabIndex = 5;
@@ -873,6 +899,7 @@
             this.groupBox8.Controls.Add(this.deleteWeaponItem);
             this.groupBox8.Controls.Add(this.moveWeaponUp);
             this.groupBox8.Controls.Add(this.moveWeaponDown);
+            this.groupBox8.ForeColor = System.Drawing.Color.White;
             this.groupBox8.Location = new System.Drawing.Point(10, 143);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(178, 90);
@@ -941,6 +968,7 @@
             this.groupBox9.Controls.Add(this.weaponModelName);
             this.groupBox9.Controls.Add(this.label7);
             this.groupBox9.Controls.Add(this.weaponDisplayName);
+            this.groupBox9.ForeColor = System.Drawing.Color.White;
             this.groupBox9.Location = new System.Drawing.Point(10, 6);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(178, 131);
@@ -995,6 +1023,7 @@
             this.weaponModelName.Name = "weaponModelName";
             this.weaponModelName.Size = new System.Drawing.Size(93, 20);
             this.weaponModelName.TabIndex = 2;
+            this.weaponModelName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.weaponModelName_KeyDown);
             // 
             // label7
             // 
@@ -1017,23 +1046,6 @@
             this.weaponDisplayName.Size = new System.Drawing.Size(92, 20);
             this.weaponDisplayName.TabIndex = 0;
             // 
-            // minimiseButton
-            // 
-            this.minimiseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.minimiseButton.FlatAppearance.BorderSize = 0;
-            this.minimiseButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.minimiseButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.minimiseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimiseButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.minimiseButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.minimiseButton.Location = new System.Drawing.Point(552, -4);
-            this.minimiseButton.Name = "minimiseButton";
-            this.minimiseButton.Size = new System.Drawing.Size(50, 27);
-            this.minimiseButton.TabIndex = 3;
-            this.minimiseButton.Text = "🗕";
-            this.minimiseButton.UseVisualStyleBackColor = true;
-            this.minimiseButton.Click += new System.EventHandler(this.minimiseButton_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1046,8 +1058,10 @@
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MinimumSize = new System.Drawing.Size(714, 490);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WhenFormClosing);
             this.panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

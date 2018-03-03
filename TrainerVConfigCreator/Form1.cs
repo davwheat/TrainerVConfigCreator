@@ -5,36 +5,53 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
+[assembly: CLSCompliant(true)]
+
 namespace TrainerVConfigCreator
 {
-    public partial class Form1 : Form
+    class NativeMethods
     {
-        bool isMaximised;
-
-        public Form1()
-        {
-            InitializeComponent();
-        }
-
-        #region General Form Code
-
-        #region AllowFormMovement
-
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HTCAPTION = 0x2;
-
         [DllImport("User32.dll")]
         public static extern bool ReleaseCapture();
 
         [DllImport("User32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        public static extern int SendMessage(IntPtr window, int message, int unknown, int parameter);
+    }
+
+
+    [CLSCompliant(true)]
+    public partial class Form1 : Form
+    {
+        public Form1() => InitializeComponent();
+
+        #region General Form Code
+
+        bool isMaximised;
+
+        #region AllowFormMovement
+
+        public const int WMNCLBUTTONDOWN = 0xA1;
+        public const int HTCAPTION = 0x2;
+
 
         private void moveForm(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+                NativeMethods.ReleaseCapture();
+                NativeMethods.SendMessage(Handle, WMNCLBUTTONDOWN, HTCAPTION, 0);
+            }
+        }
+
+        #endregion
+
+        #region Prompt On Form Exit
+
+        private void WhenFormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Have you saved your project?", "Have you saved?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly) != DialogResult.Yes)
+            {
+                e.Cancel = true;
             }
         }
 
@@ -106,27 +123,32 @@ namespace TrainerVConfigCreator
 
         #region Listbox Item Re-ordering
 
-        public static void MoveItem(int direction, ListBox listbox)
+        public static void MoveItem(int direction, ListBox listBox)
         {
+            if (listBox == null)
+            {
+                return;
+            }
+
             // Checking selected item
-            if (listbox.SelectedItem == null || listbox.SelectedIndex < 0)
+            if (listBox.SelectedItem == null || listBox.SelectedIndex < 0)
                 return; // No selected item - nothing to do
 
             // Calculate new index using move direction
-            var newIndex = listbox.SelectedIndex + direction;
+            var newIndex = listBox.SelectedIndex + direction;
 
             // Checking bounds of the range
-            if (newIndex < 0 || newIndex >= listbox.Items.Count)
+            if (newIndex < 0 || newIndex >= listBox.Items.Count)
                 return; // Index out of range - nothing to do
 
-            var selected = listbox.SelectedItem;
+            var selected = listBox.SelectedItem;
 
             // Removing removable element
-            listbox.Items.Remove(selected);
+            listBox.Items.Remove(selected);
             // Insert it in new position
-            listbox.Items.Insert(newIndex, selected);
+            listBox.Items.Insert(newIndex, selected);
             // Restore selection
-            listbox.SetSelected(newIndex, true);
+            listBox.SetSelected(newIndex, true);
         }
 
         #endregion
@@ -135,7 +157,7 @@ namespace TrainerVConfigCreator
 
         private void addNewVehBtn_Click(object sender, EventArgs e)
         {
-            if (pedDisplayName.Text == "" || pedSpawnCode.Text == "")
+            if (String.IsNullOrEmpty(vehNameTextbox.Text) || String.IsNullOrEmpty(spawnCodeTextbox.Text))
             {
                 MessageBox.Show("Vehicle Display Name or Spawn Code cannot be empty!");
                 return;
@@ -171,10 +193,11 @@ namespace TrainerVConfigCreator
 
             var ed = new EditDialog(vehicleBox.SelectedItem.ToString().Split('|')[0], vehicleBox.SelectedItem.ToString().Split('|')[1], x);
 
-            var y = ed.NewIsSlotEnabled ? "Y" : "N";
 
             var result = ed.ShowDialog();
             var item = "";
+
+            var y = ed.NewIsSlotEnabled ? "Y" : "N";
 
             if (result == DialogResult.OK)
             {
@@ -196,13 +219,22 @@ namespace TrainerVConfigCreator
             MoveItem(+1, vehicleBox);
         }
 
+        private void spawnCodeTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return || e.KeyCode == Keys.Enter)
+            {
+                addNewVehBtn_Click(addNewVehBtn, new EventArgs());
+                vehNameTextbox.Focus();
+            }
+        }
+
         #endregion
 
         #region Ped Listbox Code
 
         private void addNewPed_Click(object sender, EventArgs e)
         {
-            if (pedDisplayName.Text == ""|| pedSpawnCode.Text=="")
+            if (String.IsNullOrEmpty(pedDisplayName.Text)|| String.IsNullOrEmpty(pedSpawnCode.Text))
             {
                 MessageBox.Show("Ped Display Name or Spawn Code cannot be empty!");
                 return;
@@ -264,13 +296,22 @@ namespace TrainerVConfigCreator
             MoveItem(+1, pedBox);
         }
 
+        private void pedSpawnCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return || e.KeyCode == Keys.Enter)
+            {
+                addNewPed_Click(addNewPed, new EventArgs());
+                pedDisplayName.Focus();
+            }
+        }
+
         #endregion
 
         #region Weapon Listbox Code
 
         private void addWeapon_Click(object sender, EventArgs e)
         {
-            if (weaponDisplayName.Text == "" || weaponModelName.Text == "")
+            if (String.IsNullOrEmpty(weaponDisplayName.Text) || String.IsNullOrEmpty(weaponModelName.Text))
             {
                 MessageBox.Show("Weapon Display Name or Model Name cannot be empty!");
                 return;
@@ -330,6 +371,15 @@ namespace TrainerVConfigCreator
         private void moveWeaponDown_Click(object sender, EventArgs e)
         {
             MoveItem(+1, weaponBox);
+        }
+
+        private void weaponModelName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return || e.KeyCode == Keys.Enter)
+            {
+                addWeapon_Click(addWeapon, new EventArgs());
+                weaponDisplayName.Focus();
+            }
         }
 
         #endregion

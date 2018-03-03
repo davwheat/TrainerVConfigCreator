@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.vehicleDisplayNameTextBox = new System.Windows.Forms.TextBox();
-            this.spawncodeTextBox = new System.Windows.Forms.TextBox();
+            this.spawnCodeTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.enabledCheckbox = new System.Windows.Forms.CheckBox();
             this.okButton = new System.Windows.Forms.Button();
@@ -54,12 +54,12 @@
             this.vehicleDisplayNameTextBox.Size = new System.Drawing.Size(294, 20);
             this.vehicleDisplayNameTextBox.TabIndex = 1;
             // 
-            // spawncodeTextBox
+            // spawnCodeTextBox
             // 
-            this.spawncodeTextBox.Location = new System.Drawing.Point(128, 40);
-            this.spawncodeTextBox.Name = "spawncodeTextBox";
-            this.spawncodeTextBox.Size = new System.Drawing.Size(294, 20);
-            this.spawncodeTextBox.TabIndex = 3;
+            this.spawnCodeTextBox.Location = new System.Drawing.Point(128, 40);
+            this.spawnCodeTextBox.Name = "spawnCodeTextBox";
+            this.spawnCodeTextBox.Size = new System.Drawing.Size(294, 20);
+            this.spawnCodeTextBox.TabIndex = 3;
             // 
             // label2
             // 
@@ -114,7 +114,7 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.enabledCheckbox);
-            this.Controls.Add(this.spawncodeTextBox);
+            this.Controls.Add(this.spawnCodeTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.vehicleDisplayNameTextBox);
             this.Controls.Add(this.label1);
@@ -133,7 +133,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox vehicleDisplayNameTextBox;
-        private System.Windows.Forms.TextBox spawncodeTextBox;
+        private System.Windows.Forms.TextBox spawnCodeTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox enabledCheckbox;
         private System.Windows.Forms.Button okButton;
