@@ -1,4 +1,5 @@
-﻿namespace TrainerVConfigCreator
+﻿
+namespace TrainerVConfigCreator
 {
     partial class Form1
     {
@@ -35,7 +36,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.vehicleBox = new System.Windows.Forms.ListBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label8 = new System.Windows.Forms.Label();
+            this.fontSizeSelector = new System.Windows.Forms.NumericUpDown();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.importFromTrainerVBtn = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.loadProjectBtn = new System.Windows.Forms.Button();
             this.saveProjectBtn = new System.Windows.Forms.Button();
             this.exportprojectbtn = new System.Windows.Forms.Button();
@@ -61,6 +66,7 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pedBox = new System.Windows.Forms.ListBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button8 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -81,6 +87,7 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.weaponBox = new System.Windows.Forms.ListBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.button9 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -97,11 +104,13 @@
             this.weaponModelName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.weaponDisplayName = new System.Windows.Forms.TextBox();
+            this.openTrainerVConfigDialog = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fontSizeSelector)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -209,16 +218,19 @@
             // 
             // vehicleBox
             // 
+            this.vehicleBox.AllowDrop = true;
             this.vehicleBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.vehicleBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.vehicleBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.vehicleBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.vehicleBox.ForeColor = System.Drawing.Color.White;
             this.vehicleBox.FormattingEnabled = true;
-            this.vehicleBox.ItemHeight = 15;
+            this.vehicleBox.IntegralHeight = false;
+            this.vehicleBox.ItemHeight = 20;
             this.vehicleBox.Location = new System.Drawing.Point(0, 0);
             this.vehicleBox.Name = "vehicleBox";
             this.vehicleBox.Size = new System.Drawing.Size(495, 427);
             this.vehicleBox.TabIndex = 3;
+            this.vehicleBox.DoubleClick += new System.EventHandler(this.editVehicleItem);
             // 
             // splitContainer1
             // 
@@ -234,6 +246,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.splitContainer1.Panel2.Controls.Add(this.label8);
+            this.splitContainer1.Panel2.Controls.Add(this.fontSizeSelector);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
@@ -244,18 +258,83 @@
             this.splitContainer1.SplitterDistance = 495;
             this.splitContainer1.TabIndex = 4;
             // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(34, 380);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(67, 23);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Font Size";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // fontSizeSelector
+            // 
+            this.fontSizeSelector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.fontSizeSelector.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.fontSizeSelector.ForeColor = System.Drawing.Color.White;
+            this.fontSizeSelector.Location = new System.Drawing.Point(107, 383);
+            this.fontSizeSelector.Maximum = new decimal(new int[] {
+            48,
+            0,
+            0,
+            0});
+            this.fontSizeSelector.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.fontSizeSelector.Name = "fontSizeSelector";
+            this.fontSizeSelector.Size = new System.Drawing.Size(46, 20);
+            this.fontSizeSelector.TabIndex = 4;
+            this.fontSizeSelector.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.fontSizeSelector.ValueChanged += new System.EventHandler(this.fontSizeSelector_ValueChanged);
+            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.importFromTrainerVBtn);
+            this.groupBox3.Controls.Add(this.button7);
             this.groupBox3.Controls.Add(this.loadProjectBtn);
             this.groupBox3.Controls.Add(this.saveProjectBtn);
             this.groupBox3.Controls.Add(this.exportprojectbtn);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(10, 239);
+            this.groupBox3.Location = new System.Drawing.Point(11, 239);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(178, 109);
+            this.groupBox3.Size = new System.Drawing.Size(178, 138);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Save/Load";
+            // 
+            // importFromTrainerVBtn
+            // 
+            this.importFromTrainerVBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.importFromTrainerVBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.importFromTrainerVBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.importFromTrainerVBtn.Location = new System.Drawing.Point(8, 48);
+            this.importFromTrainerVBtn.Name = "importFromTrainerVBtn";
+            this.importFromTrainerVBtn.Size = new System.Drawing.Size(163, 23);
+            this.importFromTrainerVBtn.TabIndex = 8;
+            this.importFromTrainerVBtn.Text = "Import from Config";
+            this.importFromTrainerVBtn.UseVisualStyleBackColor = true;
+            this.importFromTrainerVBtn.Click += new System.EventHandler(this.importFromTrainerVBtn_Click);
+            // 
+            // button7
+            // 
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.button7.Location = new System.Drawing.Point(8, 19);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(163, 23);
+            this.button7.TabIndex = 7;
+            this.button7.Text = "Export to Config";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.exportToTrainerConfig);
             // 
             // loadProjectBtn
             // 
@@ -263,7 +342,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.loadProjectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loadProjectBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.loadProjectBtn.Location = new System.Drawing.Point(9, 77);
+            this.loadProjectBtn.Location = new System.Drawing.Point(8, 106);
             this.loadProjectBtn.Name = "loadProjectBtn";
             this.loadProjectBtn.Size = new System.Drawing.Size(163, 23);
             this.loadProjectBtn.TabIndex = 6;
@@ -277,7 +356,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.saveProjectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveProjectBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.saveProjectBtn.Location = new System.Drawing.Point(9, 48);
+            this.saveProjectBtn.Location = new System.Drawing.Point(8, 77);
             this.saveProjectBtn.Name = "saveProjectBtn";
             this.saveProjectBtn.Size = new System.Drawing.Size(163, 23);
             this.saveProjectBtn.TabIndex = 5;
@@ -303,7 +382,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.pictureBox1.Location = new System.Drawing.Point(177, 403);
+            this.pictureBox1.Location = new System.Drawing.Point(177, 406);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(24, 24);
             this.pictureBox1.TabIndex = 5;
@@ -319,7 +398,7 @@
             this.groupBox2.Controls.Add(this.moveItemUpBtn);
             this.groupBox2.Controls.Add(this.moveItemDownBtn);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(10, 143);
+            this.groupBox2.Location = new System.Drawing.Point(11, 143);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(178, 90);
             this.groupBox2.TabIndex = 4;
@@ -388,7 +467,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.vehNameTextbox);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(10, 6);
+            this.groupBox1.Location = new System.Drawing.Point(11, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(178, 131);
             this.groupBox1.TabIndex = 4;
@@ -480,7 +559,7 @@
             // 
             // saveConfigDialog
             // 
-            this.saveConfigDialog.Filter = "TrainerV Config|*.ini";
+            this.saveConfigDialog.Filter = "TrainerV Config File|*.ini";
             // 
             // tabControl1
             // 
@@ -543,31 +622,50 @@
             // 
             // pedBox
             // 
+            this.pedBox.AllowDrop = true;
             this.pedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.pedBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.pedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.pedBox.ForeColor = System.Drawing.Color.White;
             this.pedBox.FormattingEnabled = true;
-            this.pedBox.ItemHeight = 15;
+            this.pedBox.IntegralHeight = false;
+            this.pedBox.ItemHeight = 16;
             this.pedBox.Location = new System.Drawing.Point(0, 0);
             this.pedBox.Name = "pedBox";
             this.pedBox.Size = new System.Drawing.Size(495, 427);
             this.pedBox.TabIndex = 3;
+            this.pedBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.pedbox_DragDrop);
+            this.pedBox.DragOver += new System.Windows.Forms.DragEventHandler(this.pedbox_DragOver);
+            this.pedBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pedBox_MouseDown);
             // 
             // groupBox4
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.button8);
             this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.button2);
             this.groupBox4.Controls.Add(this.button3);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(10, 239);
+            this.groupBox4.Location = new System.Drawing.Point(11, 239);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(178, 109);
+            this.groupBox4.Size = new System.Drawing.Size(178, 138);
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Save/Load";
+            // 
+            // button8
+            // 
+            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.button8.Location = new System.Drawing.Point(8, 48);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(163, 23);
+            this.button8.TabIndex = 9;
+            this.button8.Text = "Import from Config";
+            this.button8.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -575,7 +673,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.button1.Location = new System.Drawing.Point(9, 77);
+            this.button1.Location = new System.Drawing.Point(8, 106);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(163, 23);
             this.button1.TabIndex = 6;
@@ -589,7 +687,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.button2.Location = new System.Drawing.Point(9, 48);
+            this.button2.Location = new System.Drawing.Point(8, 77);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(163, 23);
             this.button2.TabIndex = 5;
@@ -603,7 +701,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.button3.Location = new System.Drawing.Point(9, 19);
+            this.button3.Location = new System.Drawing.Point(8, 19);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(163, 23);
             this.button3.TabIndex = 4;
@@ -631,7 +729,7 @@
             this.groupBox5.Controls.Add(this.movePedUp);
             this.groupBox5.Controls.Add(this.movePedDown);
             this.groupBox5.ForeColor = System.Drawing.Color.White;
-            this.groupBox5.Location = new System.Drawing.Point(10, 143);
+            this.groupBox5.Location = new System.Drawing.Point(11, 143);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(178, 90);
             this.groupBox5.TabIndex = 4;
@@ -700,7 +798,7 @@
             this.groupBox6.Controls.Add(this.label5);
             this.groupBox6.Controls.Add(this.pedDisplayName);
             this.groupBox6.ForeColor = System.Drawing.Color.White;
-            this.groupBox6.Location = new System.Drawing.Point(10, 6);
+            this.groupBox6.Location = new System.Drawing.Point(11, 6);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(178, 131);
             this.groupBox6.TabIndex = 4;
@@ -814,29 +912,48 @@
             // 
             // weaponBox
             // 
+            this.weaponBox.AllowDrop = true;
             this.weaponBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.weaponBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.weaponBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.weaponBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.weaponBox.ForeColor = System.Drawing.Color.White;
             this.weaponBox.FormattingEnabled = true;
-            this.weaponBox.ItemHeight = 15;
+            this.weaponBox.IntegralHeight = false;
+            this.weaponBox.ItemHeight = 16;
             this.weaponBox.Location = new System.Drawing.Point(0, 0);
             this.weaponBox.Name = "weaponBox";
             this.weaponBox.Size = new System.Drawing.Size(495, 427);
             this.weaponBox.TabIndex = 3;
+            this.weaponBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.weaponbox_DragDrop);
+            this.weaponBox.DragOver += new System.Windows.Forms.DragEventHandler(this.weaponbox_DragOver);
+            this.weaponBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.weaponbox_MouseDown);
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.button9);
             this.groupBox7.Controls.Add(this.button4);
             this.groupBox7.Controls.Add(this.button5);
             this.groupBox7.Controls.Add(this.button6);
             this.groupBox7.ForeColor = System.Drawing.Color.White;
-            this.groupBox7.Location = new System.Drawing.Point(10, 239);
+            this.groupBox7.Location = new System.Drawing.Point(11, 239);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(178, 109);
+            this.groupBox7.Size = new System.Drawing.Size(178, 138);
             this.groupBox7.TabIndex = 4;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Save/Load";
+            // 
+            // button9
+            // 
+            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.button9.Location = new System.Drawing.Point(8, 48);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(163, 23);
+            this.button9.TabIndex = 10;
+            this.button9.Text = "Import from Config";
+            this.button9.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -844,7 +961,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.button4.Location = new System.Drawing.Point(9, 77);
+            this.button4.Location = new System.Drawing.Point(8, 106);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(163, 23);
             this.button4.TabIndex = 6;
@@ -858,7 +975,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.button5.Location = new System.Drawing.Point(9, 48);
+            this.button5.Location = new System.Drawing.Point(8, 77);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(163, 23);
             this.button5.TabIndex = 5;
@@ -872,7 +989,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.button6.Location = new System.Drawing.Point(9, 19);
+            this.button6.Location = new System.Drawing.Point(8, 19);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(163, 23);
             this.button6.TabIndex = 4;
@@ -900,7 +1017,7 @@
             this.groupBox8.Controls.Add(this.moveWeaponUp);
             this.groupBox8.Controls.Add(this.moveWeaponDown);
             this.groupBox8.ForeColor = System.Drawing.Color.White;
-            this.groupBox8.Location = new System.Drawing.Point(10, 143);
+            this.groupBox8.Location = new System.Drawing.Point(11, 143);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(178, 90);
             this.groupBox8.TabIndex = 4;
@@ -969,7 +1086,7 @@
             this.groupBox9.Controls.Add(this.label7);
             this.groupBox9.Controls.Add(this.weaponDisplayName);
             this.groupBox9.ForeColor = System.Drawing.Color.White;
-            this.groupBox9.Location = new System.Drawing.Point(10, 6);
+            this.groupBox9.Location = new System.Drawing.Point(11, 6);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(178, 131);
             this.groupBox9.TabIndex = 4;
@@ -1046,6 +1163,16 @@
             this.weaponDisplayName.Size = new System.Drawing.Size(92, 20);
             this.weaponDisplayName.TabIndex = 0;
             // 
+            // openTrainerVConfigDialog
+            // 
+            this.openTrainerVConfigDialog.DefaultExt = "ini";
+            this.openTrainerVConfigDialog.FileName = "trainerv";
+            this.openTrainerVConfigDialog.Filter = "TrainerV Config File|*.ini";
+            this.openTrainerVConfigDialog.InitialDirectory = "%userprofile%\\Desktop";
+            this.openTrainerVConfigDialog.RestoreDirectory = true;
+            this.openTrainerVConfigDialog.SupportMultiDottedExtensions = true;
+            this.openTrainerVConfigDialog.Title = "Open your TrainerV Config file...";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1067,6 +1194,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fontSizeSelector)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -1169,6 +1297,13 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox weaponDisplayName;
         private System.Windows.Forms.Button minimiseButton;
+        private System.Windows.Forms.Button importFromTrainerVBtn;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.OpenFileDialog openTrainerVConfigDialog;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown fontSizeSelector;
     }
 }
 
